@@ -1,0 +1,52 @@
+<div class="default-bckg" [ngClass]="{'cloud': currentWeather === 'Cloud' || currentWeather === 'Clouds', 'rain': currentWeather === 'Rain' || currentWeather === 'Drizzle', 'clear': currentWeather === 'Clear'}">
+    <h2> Welcome to Weatherify!! assignment no 1</h2>
+
+    <!-- check this dropdown -->
+    <!-- location dropdown without arrow -->
+    <!-- <div class="dropdown">
+      <button (click)="clickDropdown()" class="dropbtn" ngbDropdownToggle>Location</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#">London</a>
+        <a href="#">Bruges</a>
+        <a href="#">Ghent</a>
+        <a href="#">Amsterdam</a>
+      </div>
+    </div> -->
+    <h4 *ngIf="!selectedCity" class="get-started">Select a City to get started...</h4>
+
+    <!-- <div class="dropdown"> -->
+        <select class="dropbtn" (change)="changeCity($event.target)" >
+          <ng-container class="dropdown-content">
+              <option  value="" disabled>Select your city</option>
+              <option style="background-color: transparent; " >London</option>
+              <option class="dropdown-content">Amsterdam</option>
+          </ng-container>
+          <!-- <div> -->
+
+          <!-- </div> -->
+
+         </select>
+    <!-- </div> -->
+
+    <label *ngIf="selectedCity" class="title">{{selectedCity}}</label>
+
+    <p *ngIf="averageTemperature" class="display-temp">
+      <label> Average Temperature: </label>
+      <span>{{averageTemperature | number:'2.1-2'}} deg. C</span>
+    </p>
+
+
+    <p *ngIf="windStrength" class="display-speed">
+      <label> Wind strength: </label>
+      <span>{{windStrength}} Kmph</span>
+    </p>
+
+    <p *ngIf="averageTemperature" class="display-status">
+        <label>{{status}} </label>
+    </p>
+
+    <button class="btn btn-forecast" *ngIf="selectedCity" (click)="forecast()">Forecast</button>
+
+    <app-forecast *ngIf="selectedCity"></app-forecast>
+</div>
+
